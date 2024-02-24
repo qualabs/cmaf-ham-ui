@@ -12,7 +12,12 @@
   "dependencies": {
     "@svta/common-media-library": "file:../common-media-library/lib",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    
+    "react-dom": "^18.2.0",
+		"@types/xml2js": "^0.4.14",
+		"events": "^3.3.0",
+		"m3u8-parser": "^7.1.0",
+		"xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
