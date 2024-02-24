@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 
 export const ManifestInput = ({
-	onInput,
+  onInput,
 }: {
-	onInput: React.FormEventHandler<HTMLInputElement>;
+  onInput: React.FormEventHandler<HTMLInputElement>;
 }) => {
-	return <input type="file" onInput={onInput} />;
+  return <input type="file" onInput={onInput} />;
 };
