@@ -1,9 +1,17 @@
-import React from "react";
-
 export const ManifestInput = ({
-  onInput,
+  onSubmit,
+  onFile,
+  onUri,
 }: {
-  onInput: React.FormEventHandler<HTMLInputElement>;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  onFile: React.FormEventHandler<HTMLInputElement>;
+  onUri: React.FormEventHandler<HTMLInputElement>;
 }) => {
-  return <input type="file" onInput={onInput} />;
+  return (
+    <form onSubmit={onSubmit}>
+      <input type="file" onInput={onFile} />
+      <input type="uri" onInput={onUri} />
+      <button type="submit">Go</button>
+    </form>
+  );
 };

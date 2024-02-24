@@ -1,21 +1,21 @@
-import React from "react";
 import * as Ham from "@svta/common-media-library/cmaf-ham";
 import Track from "./Track";
 
 interface PresentationParams {
-	presentation: Ham.Presentation;
+  presentation: Ham.Presentation;
 }
 
-function Presentation({ presentation }: PresentationParams) {
-	let tracks = presentation.getTracks();
+export default function Presentation({ presentation }: PresentationParams) {
+  let tracks = presentation.getTracks().map((track : Ham.Track) => (
+    <li key={track.id}>
+      <Track track={track} />
+    </li>
+  ));
 
-	return (
-		<div>
-			<span>{presentation.id}</span>
-
-			<div>{tracks.map(Track)}</div>
-		</div>
-	);
+  return (
+    <div>
+      <span>{presentation.id}</span>
+      <ul>{tracks}</ul>
+    </div>
+  );
 }
-
-export default Presentation;

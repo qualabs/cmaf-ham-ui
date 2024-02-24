@@ -2,27 +2,28 @@ import { useEffect, useState } from "react";
 import * as Ham from "@svta/common-media-library";
 import Presentation from "./ham/Presentation";
 
-export const HamDisplay = ({ fileName }: { fileName: string }) => {
+export const HamDisplay = ({ manifest }: { manifest: string }) => {
   const [presentation, setPresentation] = useState<Ham.Presentation | null>(
     null
   );
 
   useEffect(() => {
-    const getManifest = async (fileName: string) =>
-      await fetch(fileName)
-        .then((r) => r.text())
-        .then((manifest) => {
-          console.log(manifest);
-          return Ham.mpdToHam(manifest);
-        })
-        .then((presentation) => setPresentation(presentation));
-    getManifest(fileName);
-  }, [fileName]);
+    const mapManifest = async function (manifest: string) {
+      console.log(manifest);
+      //TODO: check if dash or hls
+      return Ham.mpdToHam(manifest)
+        .then(setPresentation)
+        .catch((e) => {
+          console.error("Erorr while parsing manifest", e);
+        });
+    };
+    mapManifest(manifest);
+  }, [manifest]);
 
   if (presentation != null) {
     return (
       <div>
-        <h1>Display of {fileName}</h1>
+        <h2>Display of {presentation.id}</h2>
         <Presentation presentation={presentation}></Presentation>
       </div>
     );
