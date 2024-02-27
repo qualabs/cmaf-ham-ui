@@ -2,6 +2,21 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import "./App.css";
 import HamDisplay from "./components/HamDisplay";
 import { ManifestInput } from "./components/ManifestInput";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Container } from "@mui/material";
+
+const theme = createTheme({
+  /* palette: {
+    primary: {
+      main: "#2a9461",
+
+    },
+    secondary: {
+      main: "#494c7d",
+    },
+  }, */
+  // Override or create new styles, colors, palettes...
+});
 
 export default function App() {
   let [manifest, setManifest] = useState<string | null>(null);
@@ -63,14 +78,16 @@ export default function App() {
     );
 
   return (
-    <div>
-      <h1>HAM Converter</h1>
-      <ManifestInput
-        onSubmit={onSubmit}
-        onUri={onUri}
-        onFile={onFile}
-      ></ManifestInput>
-      {display}
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <h1>HAM Converter</h1>
+        <ManifestInput
+          onSubmit={onSubmit}
+          onUri={onUri}
+          onFile={onFile}
+        ></ManifestInput>
+        {display}
+      </Container>
+    </ThemeProvider>
   );
 }

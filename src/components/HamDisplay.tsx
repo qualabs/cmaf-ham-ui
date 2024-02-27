@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as Ham from "@svta/common-media-library";
 import Presentation from "./ham/Presentation";
+import { Container } from "@mui/material";
 
 export const HamDisplay = ({ manifest }: { manifest: string }) => {
   const [presentation, setPresentation] = useState<Ham.Presentation | null>(
@@ -22,10 +23,10 @@ export const HamDisplay = ({ manifest }: { manifest: string }) => {
 
   if (presentation != null) {
     return (
-      <div>
+      <Container maxWidth="lg">
         <h2>Display of {presentation.id}</h2>
         <Presentation presentation={presentation}></Presentation>
-      </div>
+      </Container>
     );
   } else {
     return <div>Please select a CMAF compliant Manifest to parse</div>;
