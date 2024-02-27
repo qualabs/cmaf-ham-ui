@@ -1,16 +1,15 @@
-export const ManifestInput = ({
+export const ManifestFileInput = ({
   onSubmit,
   onFile,
-  onUri,
+  toggleMediaPlaylistInputs
 }: {
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onFile: React.FormEventHandler<HTMLInputElement>;
-  onUri: React.FormEventHandler<HTMLInputElement>;
+  toggleMediaPlaylistInputs: boolean;
 }) => {
   return (
     <form onSubmit={onSubmit}>
       <input type="file" onInput={onFile} />
-      <input type="uri" onInput={onUri} />
       <button type="submit">Go</button>
     </form>
   );

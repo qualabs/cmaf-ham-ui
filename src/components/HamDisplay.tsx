@@ -3,7 +3,7 @@ import * as Ham from "@svta/common-media-library";
 import Presentation from "./ham/Presentation";
 import { Container } from "@mui/material";
 
-export const HamDisplay = ({ manifest }: { manifest: string }) => {
+export const HamDisplay = ({ manifest, protocol }: { manifest: string, protocol: string }) => {
   const [presentation, setPresentation] = useState<Ham.Presentation | null>(
     null
   );
@@ -11,13 +11,20 @@ export const HamDisplay = ({ manifest }: { manifest: string }) => {
   useEffect(() => {
     const mapManifest = async function (manifest: string) {
       console.log(manifest);
-      //TODO: check if dash or hls
-      return Ham.mpdToHam(manifest)
-        .then(setPresentation)
-        .catch((e) => {
-          console.error("Erorr while parsing manifest", e);
-        });
+      console.log(protocol);
+      if (protocol == "dash"){
+        return Ham.mpdToHam(manifest)
+          .then(setPresentation)
+          .catch((e) => {
+            console.error("Erorr while parsing manifest", e);
+          }
+        );
+      }
+      if(protocol == "hsl"){
+        //hlsToHam
+      }
     };
+
     mapManifest(manifest);
   }, [manifest]);
 
