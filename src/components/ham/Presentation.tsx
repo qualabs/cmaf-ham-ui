@@ -1,21 +1,33 @@
 import * as Ham from "@svta/common-media-library/cmaf-ham";
-import Track from "./Track";
+import SelectionSet from "./SelectionSet";
+import { Card, CardContent, Container, Grid } from "@mui/material";
 
 interface PresentationParams {
   presentation: Ham.Presentation;
 }
 
 export default function Presentation({ presentation }: PresentationParams) {
-  let tracks = presentation.getTracks().map((track : Ham.Track) => (
-    <li key={track.id}>
-      <Track track={track} />
-    </li>
-  ));
+  let selectionSets = presentation.selectionSets.map(
+    (selectionSet: Ham.SelectionSet) => (
+      <SelectionSet selectionSet={selectionSet} />
+    )
+  );
 
   return (
-    <div>
-      <span>{presentation.id}</span>
-      <ul>{tracks}</ul>
-    </div>
+    <Container  sx={{ background: "grey" }}>
+      <Card>
+        <CardContent>
+          <h3>Presentation: {presentation.id}</h3>
+          <Grid
+            container
+            direction="column"
+            justifyContent="space-evenly"
+            rowGap={2}
+          >
+            {selectionSets}
+          </Grid>
+        </CardContent>
+      </Card>
+    </Container>
   );
 }
