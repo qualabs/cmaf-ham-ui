@@ -31,7 +31,6 @@ export const HamDisplay = ({ manifest, protocol }: { manifest: string, protocol:
   if (presentation != null) {
     return (
       <Container maxWidth="lg">
-        <h2>Display of {presentation.id}</h2>
         <Presentation presentation={presentation}></Presentation>
       </Container>
     );

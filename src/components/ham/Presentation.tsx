@@ -1,6 +1,6 @@
 import * as Ham from "@svta/common-media-library/cmaf-ham";
 import SelectionSet from "./SelectionSet";
-import { Card, CardContent, Container, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 interface PresentationParams {
   presentation: Ham.Presentation;
@@ -9,14 +9,13 @@ interface PresentationParams {
 export default function Presentation({ presentation }: PresentationParams) {
   let selectionSets = presentation.selectionSets.map(
     (selectionSet: Ham.SelectionSet) => (
-      <SelectionSet selectionSet={selectionSet} />
+      <SelectionSet selectionSet={selectionSet} key={`selection-set-item-${selectionSet.id}`}/>
     )
   );
 
   return (
-    <Container  sx={{ background: "grey" }}>
-      <Card>
-        <CardContent>
+    <Container>
+      <div className="presentation-card">
           <h3>Presentation: {presentation.id}</h3>
           <Grid
             container
@@ -26,8 +25,7 @@ export default function Presentation({ presentation }: PresentationParams) {
           >
             {selectionSets}
           </Grid>
-        </CardContent>
-      </Card>
+      </div>
     </Container>
   );
 }

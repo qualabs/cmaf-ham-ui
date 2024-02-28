@@ -7,16 +7,14 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Container, Tabs, Tab, Box } from "@mui/material";
 
 const theme = createTheme({
-  /* palette: {
-    primary: {
-      main: "#2a9461",
-
-    },
-    secondary: {
-      main: "#494c7d",
-    },
-  }, */
-  // Override or create new styles, colors, palettes...
+  // palette: {
+  //   primary: {
+  //     main: "#409bc7",
+  //   },
+  //   secondary: {
+  //     main: "#f68d1e",
+  //   },
+  // }, 
 });
 
 export default function App() {
@@ -102,7 +100,7 @@ export default function App() {
       <Container>
         <h1>HAM Converter</h1>
         <Box sx={{ borderBottom: 2, borderColor: 'divider', m:2 }}>
-          <Tabs value={tabValue} onChange={handleTabChange} centered>
+          <Tabs value={tabValue} onChange={handleTabChange} centered >
             <Tab label="From URL" id={"tab-text"} />
             <Tab label="From File" id={"tab-text"}  />
           </Tabs>

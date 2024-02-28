@@ -1,6 +1,6 @@
 import * as Ham from "@svta/common-media-library/cmaf-ham";
 import Track from "./Track";
-import { Card, CardContent, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
 export default function SwitchingSet({
   switchingSet,
@@ -8,12 +8,11 @@ export default function SwitchingSet({
   switchingSet: Ham.SwitchingSet;
 }) {
   let tracks = switchingSet.tracks.map((track: Ham.Track) => (
-    <Track track={track} />
+    <Track track={track} key={`track-item-${track.id}`}/>
   ));
   return (
-    <Card sx={{ background: "#8bb1ae" }}>
-      <CardContent>
-        <span>Switching Set: {switchingSet.id}</span>
+    <div className="switching-set-card" id={`switching-set-card-${switchingSet.id}`}>
+        <h5>Switching Set: {switchingSet.id}</h5>
         <Grid
           container
           direction="column"
@@ -23,7 +22,6 @@ export default function SwitchingSet({
         >
           {tracks}
         </Grid>
-      </CardContent>
-    </Card>
+    </div>
   );
 }
