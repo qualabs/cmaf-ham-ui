@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
   --color-primary: #409bc7;
   --color-secondary: #f68d1e;
@@ -7,24 +9,24 @@
   --background-secondary: #23242b;
   --text-color-main: rgba(255, 255, 255, 0.87);
   --text-color-primary: #a9a9a9;
-  --border-primary: #232a31;;
+  --border-primary: #232a31;
+  --border-secondary: #65656e;
 
-
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: var(--text-color-main);
   background-color: var(--background-main) ;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
 
-
-
+:root::-webkit-scrollbar {
+  display: none;
 }
 
 h1 {
@@ -32,7 +34,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+button, input::file-selector-button {
   border-radius: 8px;
   border: none;
   padding: 0.4em 1em;
@@ -44,13 +46,16 @@ button {
   margin: 1em;
 }
 
+input::file-selector-button {
+  padding: 0.7em 1em;
+}
+
 input{
   padding: 0.4em;
 }
 
-.presentation-card{
-  /* background-color: var(--background-primary); */
-}
+/* .presentation-card{
+} */
 
 .selection-set-card{
   background-color: var(--background-primary);
@@ -65,11 +70,12 @@ input{
   padding: 1rem;
   border-radius: 0.5rem;
   color: var(--text-color-main);
+  min-width: 200px;
 }
 
 .track-card{
   border-radius: 0.2rem;
-  border: 1px solid var(--text-color-main);
+  border: 1px solid var(--border-secondary);
   padding: 0.5rem;
   color: var(--text-color-primary)
 }
