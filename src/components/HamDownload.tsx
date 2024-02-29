@@ -30,8 +30,8 @@ export const HamDownload = ({presentation}: { presentation: Ham.Presentation, pr
 
   return (
     <>
-      <button id="download-mpd" onClick={downloadMpdFile}>Download as DASH</button>
-      <button id="download-m3u8" onClick={downloadM3U8File}>Download as HLS</button>
+      <button id="download-mpd" onClick={downloadMpdFile}>Export as DASH</button>
+      <button id="download-m3u8" onClick={downloadM3U8File}>Export as HLS</button>
     </>
   )
 }
