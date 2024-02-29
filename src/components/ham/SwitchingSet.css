@@ -1,0 +1,7 @@
+.switching-set-card{
+  background-color: var(--background-secondary);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: var(--text-color-main);
+  min-width: 200px;
+}

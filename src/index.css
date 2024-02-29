@@ -44,6 +44,14 @@ button, input::file-selector-button {
   background-color: var(--color-primary);
   cursor: pointer;
   margin: 1em;
+  color: var(--text-color-main);
+}
+
+button a{
+  text-decoration: none;
+  color: var(--text-color-main);
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 input::file-selector-button {
@@ -54,36 +62,6 @@ input{
   padding: 0.4em;
 }
 
-/* .presentation-card{
-} */
-
-.selection-set-card{
-  background-color: var(--background-primary);
-  border: 1px solid var(--border-primary);
-  border-radius: 0.5rem;
-  padding: 1rem;
-  color: var(--text-color-main);
-}
-
-.switching-set-card{
-  background-color: var(--background-secondary);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  color: var(--text-color-main);
-  min-width: 200px;
-}
-
-.track-card{
-  border-radius: 0.2rem;
-  border: 1px solid var(--border-secondary);
-  padding: 0.5rem;
-  color: var(--text-color-primary)
-}
-
-.track-card:hover{
-  background-color: var(--background-primary);
-  color: var(--text-color-main)
-}
 
 #tab-text{
   color: white;
