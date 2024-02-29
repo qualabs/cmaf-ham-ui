@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import * as Ham from "@svta/common-media-library";
 import Presentation from "./ham/Presentation";
 import { Container } from "@mui/material";
+import HamDownload from "./HamDownload";
 
 export const HamDisplay = ({ manifest, protocol }: { manifest: string, protocol: string }) => {
-  const [presentation, setPresentation] = useState<Ham.Presentation | null>(
-    null
-  );
+  const [presentation, setPresentation] = useState<Ham.Presentation | null>(null);
 
   useEffect(() => {
     const mapManifest = async function (manifest: string) {
@@ -31,6 +30,7 @@ export const HamDisplay = ({ manifest, protocol }: { manifest: string, protocol:
   if (presentation != null) {
     return (
       <Container maxWidth="lg">
+        <HamDownload presentation={presentation} protocol={protocol} />
         <Presentation presentation={presentation}></Presentation>
       </Container>
     );
