@@ -7,7 +7,7 @@ export const HamDownload = ({presentation}: { presentation: Ham.Presentation, pr
     if (manifest){
       const element = document.createElement("a");
       const file = new Blob([manifest], {type: 'application/dash+xml'})
-      element.download = "myFile.mpd"; //TODO access original filename
+      element.download = "manifest.mpd"; //TODO access original filename
       triggerDownloadLink(element, file);
     }
   }
@@ -17,7 +17,7 @@ export const HamDownload = ({presentation}: { presentation: Ham.Presentation, pr
     // if (manifest){
     //   const element = document.createElement("a");
     //   const file = new Blob([manifest], {type: 'application/x-mpegURL'})
-    //   element.download = "myFile.m3u8"; //TODO access original filename
+    //   element.download = "playlist.m3u8"; //TODO access original filename
     //   triggerDownloadLink(element, file);
     // }
   }
