@@ -12,7 +12,7 @@ export const HamDownload = ({presentation}: { presentation: Ham.Presentation, pr
     }
   }
 
-  const downloadUM38File = async () => {
+  const downloadUM3U8File = async () => {
     // let manifest = await Ham.hamToM3U8(presentation);
     // if (manifest){
     //   const element = document.createElement("a");
@@ -31,7 +31,7 @@ export const HamDownload = ({presentation}: { presentation: Ham.Presentation, pr
   return (
     <>
       <button onClick={downloadMpdFile}>Download as DASH</button>
-      <button onClick={downloadUM38File}>Download as HLS</button>
+      <button onClick={downloadUM3U8File}>Download as HLS</button>
     </>
   )
 }
