@@ -31,7 +31,7 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
       if (fileExtension) {
         zip.file(fileName + fileExtension, manifest.manifest);
         if(manifest.ancillaryManifests){
-          getAncillaryManifests(protocol, manifest.ancillaryManifests);
+          exportAncillaryManifests(protocol, manifest.ancillaryManifests);
         }
         zip.generateAsync({type:"blob"}).then(function(content) {
           saveAs(content, "ham_converter.zip");
@@ -51,7 +51,7 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
     }
   }
 
-  const getAncillaryManifests = (protocol: Protocols, manifests: Manifest[]) =>{
+  const exportAncillaryManifests = (protocol: Protocols, manifests: Manifest[]) =>{
     switch(protocol) {
       case Protocols.HLS:
       manifests.map((ancillaryManifest, index)=>{
