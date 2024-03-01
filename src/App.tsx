@@ -5,6 +5,7 @@ import { ManifestFileInput } from "./components/ManifestFileInput";
 import { ManifestUrlInput } from "./components/ManifestUrlInput";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Container, Tabs, Tab, Box } from "@mui/material";
+import { Protocols } from "./utils/enums/Protocols";
 
 const theme = createTheme({
   // palette: {
@@ -83,9 +84,9 @@ export default function App() {
     //const mpdRegex = /.*\.mpd$/
     const m3u8Regex = /.*\.m3u8$/
     if (m3u8Regex.test(string)) {
-      return 'hls'
+      return Protocols.HLS
     } else {
-      return 'dash'
+      return Protocols.DASH
     }
   }
 
