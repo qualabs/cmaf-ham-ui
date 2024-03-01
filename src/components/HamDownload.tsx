@@ -20,7 +20,9 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
         const element = document.createElement("a");
         const file = new Blob([manifest], {type: '*'})
         element.download = fileName + fileExtention;
-        triggerDownloadLink(element, file);
+        element.href = URL.createObjectURL(file);
+        document.body.appendChild(element);
+        element.click();
       }
     }
   }
@@ -36,12 +38,6 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
       default:
         break;
     }
-  }
-
-  function triggerDownloadLink(element: HTMLAnchorElement, file: Blob){
-    element.href = URL.createObjectURL(file);
-    document.body.appendChild(element);
-    element.click();
   }
 
   return (
