@@ -5,7 +5,7 @@ enum Protocols {
   DASH= "dash"
 }
 
-enum Extentions {
+enum FileExtensions {
   hls= ".m3u8",
   dash= ".mpd"
 }
