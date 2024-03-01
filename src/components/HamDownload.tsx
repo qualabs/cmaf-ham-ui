@@ -1,14 +1,7 @@
 import * as Ham from "@svta/common-media-library";
+import { Protocols } from "../utils/enums/Protocols";
+import { FileExtensions } from "../utils/enums/FileExtensions";
 
-enum Protocols {
-  HLS= "hls",
-  DASH= "dash"
-}
-
-enum FileExtensions {
-  hls= ".m3u8",
-  dash= ".mpd"
-}
 
 //TODO receive presentation as list
 export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presentation, fileName: string }) => {
