@@ -15,11 +15,11 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
   const hamDownload = async (protocol: Protocols) => {
     const manifest = await getManifest(protocol)
     if (manifest){
-      const fileExtention = Extentions[protocol]
-      if (fileExtention) {
+      const fileExtension = FileExtensions[protocol]
+      if (fileExtension) {
         const element = document.createElement("a");
         const file = new Blob([manifest], {type: '*'})
-        element.download = fileName + fileExtention;
+        element.download = fileName + fileExtension;
         element.href = URL.createObjectURL(file);
         document.body.appendChild(element);
         element.click();
