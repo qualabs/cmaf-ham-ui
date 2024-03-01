@@ -26,7 +26,7 @@ export const HamDisplay = ({ manifest, protocol }: { manifest: string, protocol:
           );
           break;
         case Protocols.HLS:
-          // return Ham.mpdToM3U8(manifest)
+          // return Ham.m3u8ToHam(manifest)
           //   .then(setPresentation)
           //   .catch((e) => {
           //     console.error("Erorr while parsing manifest", e);
