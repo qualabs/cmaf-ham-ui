@@ -18,12 +18,12 @@ export const HamDisplay = ({ manifest, protocol, fileName }: { manifest: string,
       // console.log(protocol);
       switch(protocol) {
         case Protocols.DASH:
-          return Ham.mpdToHam(manifest)
-            .then(setPresentation)
-            .catch((e) => {
-              console.error("Erorr while parsing manifest", e);
-            }
-          );
+          let ham = Ham.mpdToHam(manifest);
+          if (ham.length > 0) {
+            setPresentation(ham[0]); // TODO change state to list of presentations
+          } else {
+            setPresentation(null);
+          }
           break;
         case Protocols.HLS:
           // return Ham.m3u8ToHam(manifest)
