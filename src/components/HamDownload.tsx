@@ -10,6 +10,7 @@ enum FileExtensions {
   dash= ".mpd"
 }
 
+//TODO receive presentation as list
 export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presentation, fileName: string }) => {
 
   const hamDownload = async (protocol: Protocols) => {
@@ -18,7 +19,7 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
       const fileExtension = FileExtensions[protocol]
       if (fileExtension) {
         const element = document.createElement("a");
-        const file = new Blob([manifest], {type: '*'})
+        const file = new Blob([manifest.manifest], {type: '*'})
         element.download = fileName + fileExtension;
         element.href = URL.createObjectURL(file);
         document.body.appendChild(element);
@@ -30,11 +31,9 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
   const getManifest = async (protocol: Protocols) =>{
     switch (protocol) {
       case Protocols.DASH:
-        return await Ham.hamToMpd(presentation)
-        break;
+        return Ham.hamToMPD([presentation])
       case Protocols.HLS:
-        // return await Ham.hamToM3U8(presentation);
-        break;
+        return Ham.hamToM3U8([presentation]);
       default:
         break;
     }
