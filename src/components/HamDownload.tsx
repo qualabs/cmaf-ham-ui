@@ -3,13 +3,14 @@ import { Protocols } from "../utils/enums/Protocols";
 import { FileExtensions } from "../utils/enums/FileExtensions";
 import JSZip from "jszip";
 import saveAs from "file-saver";
+import { Manifest } from "@svta/common-media-library/cmaf/utils/types/Manifest.js";
 const zip = new JSZip();
 
 //TODO receive presentation as list
 export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presentation, fileName: string }) => {
 
-  const hamDownload = async (protocol: Protocols) => {
-    const manifest = await getManifest(protocol)
+  const hamDownload = (protocol: Protocols) => {
+    const manifest = getMainManifest(protocol)
     if (manifest){
       const fileExtension = FileExtensions[protocol]
       if (fileExtension) {
@@ -23,12 +24,15 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
     }
   }
 
-  const hamZipDownload = async (protocol: Protocols) => {
-    const manifest = await getManifest(protocol)
+  const hamZipDownload = (protocol: Protocols) => {
+    const manifest = getMainManifest(protocol)
     if (manifest){
       const fileExtension = FileExtensions[protocol]
       if (fileExtension) {
         zip.file(fileName + fileExtension, manifest.manifest);
+        if(manifest.ancillaryManifests){
+          getAncillaryManifests(protocol, manifest.ancillaryManifests);
+        }
         zip.generateAsync({type:"blob"}).then(function(content) {
           saveAs(content, "ham_converter.zip");
       });
@@ -36,7 +40,7 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
     }
   }
 
-  const getManifest = async (protocol: Protocols) =>{
+  const getMainManifest = (protocol: Protocols ) =>{
     switch (protocol) {
       case Protocols.DASH:
         return Ham.hamToMPD([presentation])
@@ -44,6 +48,15 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
         return Ham.hamToM3U8([presentation]);
       default:
         break;
+    }
+  }
+
+  const getAncillaryManifests = (protocol: Protocols, manifests: Manifest[]) =>{
+    switch(protocol) {
+      case Protocols.HLS:
+      manifests.map((ancillaryManifest, index)=>{
+        zip.file(`playlist_${index}`, ancillaryManifest.manifest); //TODO get the ancillary mmanifest filename
+      })
     }
   }
 
