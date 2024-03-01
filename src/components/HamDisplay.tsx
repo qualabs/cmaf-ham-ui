@@ -3,11 +3,7 @@ import * as Ham from "@svta/common-media-library";
 import Presentation from "./ham/Presentation";
 import { Container } from "@mui/material";
 import HamDownload from "./HamDownload";
-
-enum Protocols {
-  HLS= "hls",
-  DASH= "dash"
-}
+import { Protocols } from "../utils/enums/Protocols";
 
 export const HamDisplay = ({ manifest, protocol, fileName }: { manifest: string, protocol: string, fileName: string }) => {
   const [presentation, setPresentation] = useState<Ham.Presentation | null>(null);
