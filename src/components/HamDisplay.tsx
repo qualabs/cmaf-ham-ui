@@ -9,7 +9,7 @@ enum Protocols {
   DASH= "dash"
 }
 
-export const HamDisplay = ({ manifest, protocol }: { manifest: string, protocol: string }) => {
+export const HamDisplay = ({ manifest, protocol, fileName }: { manifest: string, protocol: string, fileName: string }) => {
   const [presentation, setPresentation] = useState<Ham.Presentation | null>(null);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export const HamDisplay = ({ manifest, protocol }: { manifest: string, protocol:
   if (presentation != null) {
     return (
       <Container maxWidth="lg">
-        <HamDownload presentation={presentation} />
+        <HamDownload presentation={presentation} fileName={fileName}/>
         <Presentation presentation={presentation}></Presentation>
       </Container>
     );

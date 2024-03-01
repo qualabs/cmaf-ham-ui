@@ -20,6 +20,7 @@ const theme = createTheme({
 export default function App() {
   let [manifest, setManifest] = useState<string | null>(null);
   let [file, setFile] = useState<Blob | null>(null);
+  let [fileName, setFileName] = useState<string>("");
   let [protocol, setProtocol] = useState<string | null>(null);
   let [uri, setUri] = useState<string>("");
   let [toggleMediaPlaylistInputs, setToggleMediaPlaylistInputs] = useState<boolean>(false);
@@ -58,6 +59,7 @@ export default function App() {
   const onFile = (element: ChangeEvent<HTMLInputElement>) => {
     if (element.target?.files) {
       setFile(element.target.files[0]);
+      setFileName(element.target.files[0].name.split('.')[0]);
       let manifest_protocol = getProtocol(element.target.files[0].name)
       setProtocol(manifest_protocol);
       if(manifest_protocol == "hls"){
@@ -70,6 +72,10 @@ export default function App() {
 
   const onUri = async (element: FormEvent<HTMLInputElement>) => {
     setUri(element.currentTarget.value);
+    let urlFileName = element.currentTarget.value.split("/").pop();
+    if(urlFileName){
+      setFileName(urlFileName?.split('.')[0]);
+    }
     setProtocol(getProtocol(element.currentTarget.value));
   };
 
@@ -85,7 +91,7 @@ export default function App() {
 
   let display =
     manifest !== null && protocol !== null ? (
-      <HamDisplay manifest={manifest} protocol={protocol}></HamDisplay>
+      <HamDisplay manifest={manifest} protocol={protocol} fileName={fileName}></HamDisplay>
     ) : (
       <div>Error</div>
     );

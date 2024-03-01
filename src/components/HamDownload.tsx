@@ -6,11 +6,11 @@ enum Protocols {
 }
 
 enum Extentions {
-  hls= "m3u8",
-  dash= "mpd"
+  hls= ".m3u8",
+  dash= ".mpd"
 }
 
-export const HamDownload = ({presentation}: { presentation: Ham.Presentation }) => {
+export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presentation, fileName: string }) => {
 
   const hamDownload = async (protocol: Protocols) => {
     const manifest = await getManifest(protocol)
@@ -19,7 +19,7 @@ export const HamDownload = ({presentation}: { presentation: Ham.Presentation }) 
       if (fileExtention) {
         const element = document.createElement("a");
         const file = new Blob([manifest], {type: '*'})
-        element.download = "manifest."+fileExtention; //TODO access original filename
+        element.download = fileName + fileExtention;
         triggerDownloadLink(element, file);
       }
     }
