@@ -5,12 +5,17 @@ enum Protocols {
   DASH= "dash"
 }
 
+enum Extentions {
+  hls= "m3u8",
+  dash= "mpd"
+}
+
 export const HamDownload = ({presentation}: { presentation: Ham.Presentation }) => {
 
   const hamDownload = async (protocol: Protocols) => {
     const manifest = await getManifest(protocol)
     if (manifest){
-      const fileExtention = getFileExtention(protocol)
+      const fileExtention = Extentions[protocol]
       if (fileExtention) {
         const element = document.createElement("a");
         const file = new Blob([manifest], {type: '*'})
@@ -27,19 +32,6 @@ export const HamDownload = ({presentation}: { presentation: Ham.Presentation }) 
         break;
       case Protocols.HLS:
         // return await Ham.hamToM3U8(presentation);
-        break;
-      default:
-        break;
-    }
-  }
-
-  const getFileExtention = (protocol: string) =>{
-    switch (protocol) {
-      case Protocols.DASH:
-        return "mpd";
-        break;
-      case Protocols.HLS:
-        return "m3u8";
         break;
       default:
         break;
