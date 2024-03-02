@@ -1,18 +1,37 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as Ham from "@svta/common-media-library";
 import Presentation from "./ham/Presentation";
-import { Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import HamDownload from "./HamDownload";
 import { Protocols } from "../utils/enums/Protocols";
+import TrackInfo from "./ham/TrackInfo";
+import {
+  SelectedTrackContext,
+  SelectedTrackType,
+} from "../context/TrackSelectedContext";
 
-export const HamDisplay = ({ manifest, protocol, fileName }: { manifest: string, protocol: string, fileName: string }) => {
-  const [presentation, setPresentation] = useState<Ham.Presentation | null>(null);
+export const HamDisplay = ({
+  manifest,
+  protocol,
+  fileName,
+}: {
+  manifest: string;
+  protocol: string;
+  fileName: string;
+}) => {
+  const [presentation, setPresentation] = useState<Ham.Presentation | null>(
+    null
+  );
+
+  const { selectedTrack } = useContext(
+    SelectedTrackContext
+  ) as SelectedTrackType;
 
   useEffect(() => {
     const mapManifest = async function (manifest: string) {
       // console.log(manifest);
       // console.log(protocol);
-      switch(protocol) {
+      switch (protocol) {
         case Protocols.DASH:
           let ham = Ham.mpdToHam(manifest);
           if (ham.length > 0) {
@@ -31,19 +50,41 @@ export const HamDisplay = ({ manifest, protocol, fileName }: { manifest: string,
           break;
         default:
           break;
-        }
+      }
     };
 
     mapManifest(manifest);
   }, [manifest]);
 
   if (presentation != null) {
-    return (
-      <Container maxWidth="lg">
-        <HamDownload presentation={presentation} fileName={fileName}/>
-        <Presentation presentation={presentation}></Presentation>
-      </Container>
+    let DownloadButtons = (
+      <HamDownload presentation={presentation} fileName={fileName} />
     );
+    let PresentationsDisplay = (
+      <Presentation presentation={presentation}></Presentation>
+    );
+    let Display =
+      selectedTrack == null ? (
+        <Container maxWidth="lg">
+          {DownloadButtons}
+          {PresentationsDisplay}
+        </Container>
+      ) : (
+        <Container maxWidth="lg">
+          <Grid container>
+            <Grid item xs={8}>
+              {PresentationsDisplay}
+            </Grid>
+            <Grid item position="sticky" xs={4}>
+              <TrackInfo track={selectedTrack}></TrackInfo>
+            </Grid>
+            <Grid item xs={12}>
+              {DownloadButtons}
+            </Grid>
+          </Grid>
+        </Container>
+      );
+    return Display;
   } else {
     return <div>Please select a CMAF compliant Manifest to parse</div>;
   }

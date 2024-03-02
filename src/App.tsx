@@ -6,6 +6,7 @@ import { ManifestUrlInput } from "./components/ManifestUrlInput";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Container, Tabs, Tab, Box } from "@mui/material";
 import { Protocols } from "./utils/enums/Protocols";
+import { SelectedTrackProvider } from "./context/TrackSelectedContext";
 
 const theme = createTheme({
   // palette: {
@@ -92,12 +93,14 @@ export default function App() {
 
   let display =
     manifest !== null && protocol !== null ? (
-      <HamDisplay manifest={manifest} protocol={protocol} fileName={fileName}></HamDisplay>
+      <SelectedTrackProvider>
+        <HamDisplay manifest={manifest} protocol={protocol} fileName={fileName}></HamDisplay>
+      </SelectedTrackProvider>
     ) : (
-      <div>Error</div>
+      <div>No manifest selected</div>
     );
 
-    const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
       setTabValue(newValue);
     };
 
