@@ -21,4 +21,18 @@
 #track-info-header{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.track-info-row{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.track-info-row input{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--text-color-main);;
+  color: var(--text-color-main);
 }

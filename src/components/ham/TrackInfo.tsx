@@ -1,11 +1,10 @@
 import {
   Divider,
   List,
-  ListItem,
-  ListItemText,
 } from "@mui/material";
 import "./TrackInfo.css";
 import * as Ham from "@svta/common-media-library/cmaf-ham";
+import { useState } from "react";
 
 interface TrackInfoItem {
   id: string;
@@ -15,20 +14,21 @@ interface TrackInfoItem {
 }
 
 export default function TrackInfo({ track }: { track: Ham.Track }) {
+  const [trackEditMode, setTrackEditMode] = useState(false);
+
   return (
     <div className="track-info">
       <div id="track-info-header">
         <h3>Track Details</h3>
-        <button>Edit</button>
+        <button onClick={() => setTrackEditMode(true)}>Edit</button>
       </div>
       <List title="test">
         {trackToItems(track)
           .map((item) => (
-            <ListItem key={item.id}>
-              <ListItemText
-                primary={item.label + " " + item.value}
-              ></ListItemText>
-            </ListItem>
+            <div className="track-info-row">
+              <label htmlFor={item.id}>{item.label}</label>
+              <input id={item.id} value={item.value} disabled={!trackEditMode}></input>
+            </div>
           ))
           .flatMap((value, index, array) =>
             array.length - 1 !== index // check for the last item
@@ -36,6 +36,12 @@ export default function TrackInfo({ track }: { track: Ham.Track }) {
               : value
           )}
       </List>
+      {trackEditMode && 
+        <div>
+          <button>Save</button>
+          <button onClick={() => setTrackEditMode(false)}>Cancel</button>
+        </div>
+      }
     </div>
   );
 }
