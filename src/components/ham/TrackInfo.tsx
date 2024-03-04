@@ -1,35 +1,79 @@
-import { Divider, List, ListItem, ListItemText } from "@mui/material";
+import {
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+import "./TrackInfo.css";
 import * as Ham from "@svta/common-media-library/cmaf-ham";
+
+interface TrackInfoItem {
+  id: string;
+  label: string;
+  value: number | string;
+  editable?: boolean;
+}
 
 export default function TrackInfo({ track }: { track: Ham.Track }) {
   return (
-    <List className="track-info">
-      {trackToItems(track)
-        .map((item, index) => (
-          <ListItem key={index}>
-            <ListItemText primary={item}></ListItemText>
-          </ListItem>
-        ))
-        .flatMap((value, index, array) =>
-          array.length - 1 !== index // check for the last item
-            ? [value, <Divider />]
-            : value
-        )}
-    </List>
+    <div className="track-info">
+      <h4>Selected Track:</h4>
+      <List title="test">
+        {trackToItems(track)
+          .map((item) => (
+            <ListItem key={item.id}>
+              <ListItemText
+                primary={item.label + " " + item.value}
+              ></ListItemText>
+            </ListItem>
+          ))
+          .flatMap((value, index, array) =>
+            array.length - 1 !== index // check for the last item
+              ? [value, <Divider />]
+              : value
+          )}
+      </List>
+    </div>
   );
 }
 
-const trackToItems = (track: Ham.Track) => {
+const trackToItems = (track: Ham.Track): TrackInfoItem[] => {
   return [
-    ["Track: ", track.id],
-    ["Name: ", track.name],
-    ["Bandwidth: ", track.bandwidth],
-    ["Duration: ", track.duration],
-    ["Number of segments: ", track.segments.length],
-    ["Language: ", track.language],
-  ]
-    .filter((row) => row[1])
-    .map((row) => {
-      return row[0] + row[1].toString();
-    });
+    {
+      id: "id",
+      label: "Track:",
+      value: track.id,
+      editable: false,
+    },
+    {
+      id: "name",
+      label: "Name: ",
+      value: track.name,
+      editable: true,
+    },
+    {
+      id: "bandwidth",
+      label: "Bandwidth:",
+      value: track.bandwidth,
+      editable: true,
+    },
+    {
+      id: "duration",
+      label: "Duration:",
+      value: track.duration,
+      editable: true,
+    },
+    {
+      id: "segments",
+      label: "Number of segments:",
+      value: track.segments.length,
+      editable: true,
+    },
+    {
+      id: "language",
+      label: "Language:",
+      value: track.language,
+      editable: true,
+    },
+  ].filter((item) => item.value !== undefined);
 };
