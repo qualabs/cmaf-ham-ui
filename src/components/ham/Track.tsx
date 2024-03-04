@@ -7,11 +7,12 @@ import {
 } from "../../context/TrackSelectedContext";
 
 export default function Track({ track }: { track: Ham.Track }) {
-  const { selectedTrack, selectTrack } = useContext(
+  const { selectedTrack, selectTrack, handleOpenTrackModal } = useContext(
     SelectedTrackContext
   ) as SelectedTrackType;
   const onClick = () => {
     selectTrack(track);
+    handleOpenTrackModal();
   };
   const isSelected = selectedTrack !== null && selectedTrack.id === track.id;
   return (

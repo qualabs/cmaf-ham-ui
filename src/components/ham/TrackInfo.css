@@ -1,10 +1,14 @@
 .track-info{
+  background-color: var(--background-primary);
   border-radius: 0.2rem;
   border: 1px solid var(--border-secondary);
-  padding: 0.5rem;
-  color: var(--text-color-primary);
-  top: 20px;
-  position: sticky;
+  padding: 2rem;
+  color: var(--text-color-main);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30vw;
+  transform: translate(-50%, -50%);
   z-index: 999 !important;
 }
 

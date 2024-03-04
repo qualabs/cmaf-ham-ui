@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import * as Ham from "@svta/common-media-library";
+import { Container, Modal } from "@mui/material";
 import Presentation from "./ham/Presentation";
-import { Container, Grid } from "@mui/material";
 import HamDownload from "./HamDownload";
 import { Protocols } from "../utils/enums/Protocols";
 import TrackInfo from "./ham/TrackInfo";
@@ -23,7 +23,8 @@ export const HamDisplay = ({
     null
   );
 
-  const { selectedTrack } = useContext(
+
+  const { selectedTrack, openTrackModal, handleCloseTrackModal } = useContext(
     SelectedTrackContext
   ) as SelectedTrackType;
 
@@ -71,17 +72,14 @@ export const HamDisplay = ({
         </Container>
       ) : (
         <Container maxWidth="lg">
-          <Grid container>
-            <Grid item xs={8}>
-              {PresentationsDisplay}
-            </Grid>
-            <Grid item position="sticky" xs={4}>
-              <TrackInfo track={selectedTrack}></TrackInfo>
-            </Grid>
-            <Grid item xs={12}>
-              {DownloadButtons}
-            </Grid>
-          </Grid>
+          {PresentationsDisplay}
+          {DownloadButtons}
+          <Modal
+            open={openTrackModal}
+            onClose={handleCloseTrackModal}
+          >
+            <TrackInfo track={selectedTrack}></TrackInfo>
+          </Modal>
         </Container>
       );
     return Display;
