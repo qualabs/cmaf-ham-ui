@@ -17,7 +17,10 @@ interface TrackInfoItem {
 export default function TrackInfo({ track }: { track: Ham.Track }) {
   return (
     <div className="track-info">
-      <h4>Selected Track:</h4>
+      <div id="track-info-header">
+        <h3>Track Details</h3>
+        <button>Edit</button>
+      </div>
       <List title="test">
         {trackToItems(track)
           .map((item) => (

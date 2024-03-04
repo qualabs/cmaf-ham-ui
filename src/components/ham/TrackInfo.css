@@ -17,3 +17,8 @@
   align-items: flex-end;
   border: 3px solid green;
 }
+
+#track-info-header{
+  display: flex;
+  justify-content: space-between;
+}
