@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import * as Ham from "@svta/common-media-library";
 import { Container, Modal } from "@mui/material";
 import Presentation from "./ham/Presentation";
@@ -10,6 +10,11 @@ import {
   SelectedTrackType,
 } from "../context/TrackSelectedContext";
 
+import {
+  PresentationContext,
+  PresentationContextType,
+} from "../context/PresentationContext";
+
 export const HamDisplay = ({
   manifest,
   protocol,
@@ -19,9 +24,10 @@ export const HamDisplay = ({
   protocol: string;
   fileName: string;
 }) => {
-  const [presentation, setPresentation] = useState<Ham.Presentation | null>(
-    null
-  );
+
+  const { presentation, selectPresentation } = useContext(
+    PresentationContext
+  ) as PresentationContextType;
 
 
   const { selectedTrack, openTrackModal, handleCloseTrackModal } = useContext(
@@ -36,9 +42,7 @@ export const HamDisplay = ({
         case Protocols.DASH:
           let ham = Ham.mpdToHam(manifest);
           if (ham.length > 0) {
-            setPresentation(ham[0]); // TODO change state to list of presentations
-          } else {
-            setPresentation(null);
+            selectPresentation(ham[0]); // TODO change state to list of presentations
           }
           break;
         case Protocols.HLS:
@@ -62,26 +66,44 @@ export const HamDisplay = ({
       <HamDownload presentation={presentation} fileName={fileName} />
     );
     let PresentationsDisplay = (
-      <Presentation presentation={presentation}></Presentation>
+      <Presentation/>
     );
+
+    // let Display =
+    //   selectedTrack == null ? (
+    //     <Container maxWidth="lg">
+    //       {DownloadButtons}
+    //       {PresentationsDisplay}
+    //     </Container>
+    //   ) : (
+    //     <Container maxWidth="lg">
+    //       {DownloadButtons}
+    //       {PresentationsDisplay}
+    //       <Modal
+    //         open={openTrackModal}
+    //         onClose={handleCloseTrackModal}
+    //       >
+    //         <TrackInfo track={selectedTrack}></TrackInfo>
+    //       </Modal>
+    //     </Container>
+    //   );
+
     let Display =
-      selectedTrack == null ? (
+       <>
         <Container maxWidth="lg">
           {DownloadButtons}
           {PresentationsDisplay}
         </Container>
-      ) : (
-        <Container maxWidth="lg">
-          {PresentationsDisplay}
-          {DownloadButtons}
+        {selectedTrack !== null &&
           <Modal
             open={openTrackModal}
             onClose={handleCloseTrackModal}
           >
             <TrackInfo track={selectedTrack}></TrackInfo>
           </Modal>
-        </Container>
-      );
+        }
+       </>
+
     return Display;
   } else {
     return <div>Please select a CMAF compliant Manifest to parse</div>;

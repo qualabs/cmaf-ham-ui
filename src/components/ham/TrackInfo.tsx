@@ -16,11 +16,18 @@ interface TrackInfoItem {
 export default function TrackInfo({ track }: { track: Ham.Track }) {
   const [trackEditMode, setTrackEditMode] = useState(false);
 
+  const removeTrack = () => {
+    //remove track from presentation
+  };
+
   return (
     <div className="track-info">
       <div id="track-info-header">
         <h3>Track Details</h3>
-        <button onClick={() => setTrackEditMode(true)}>Edit</button>
+        <div>
+          <button onClick={() => setTrackEditMode(true)}>Edit</button>
+          <button onClick={() => removeTrack()}>Delete</button>
+        </div>
       </div>
       <List title="test">
         {trackToItems(track)

@@ -7,6 +7,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Container, Tabs, Tab, Box } from "@mui/material";
 import { Protocols } from "./utils/enums/Protocols";
 import { SelectedTrackProvider } from "./context/TrackSelectedContext";
+import { PresentationProvider } from "./context/PresentationContext";
 
 const theme = createTheme({
   // palette: {
@@ -93,9 +94,11 @@ export default function App() {
 
   let display =
     manifest !== null && protocol !== null ? (
-      <SelectedTrackProvider>
-        <HamDisplay manifest={manifest} protocol={protocol} fileName={fileName}></HamDisplay>
-      </SelectedTrackProvider>
+      <PresentationProvider>
+        <SelectedTrackProvider>
+          <HamDisplay manifest={manifest} protocol={protocol} fileName={fileName}></HamDisplay>
+        </SelectedTrackProvider>
+      </PresentationProvider>
     ) : (
       <div>No manifest selected</div>
     );
