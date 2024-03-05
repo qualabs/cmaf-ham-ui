@@ -2,10 +2,16 @@
   border-radius: 0.2rem;
   border: 1px solid var(--border-secondary);
   padding: 0.5rem;
-  color: var(--text-color-primary)
+  color: var(--text-color-primary);
+  width: 250px;
 }
 
 .track-card:hover{
+  background-color: var(--background-primary);
+  color: var(--text-color-main)
+}
+
+.track-card.selected{
   background-color: var(--background-primary);
   color: var(--text-color-main)
 }

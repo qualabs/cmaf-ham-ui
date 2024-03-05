@@ -8,8 +8,10 @@ export default function SwitchingSet({
 }: {
   switchingSet: Ham.SwitchingSet;
 }) {
-  let tracks = switchingSet.tracks.map((track: Ham.Track) => (
-    <Track track={track} key={`track-item-${track.id}`}/>
+  let tracks = switchingSet.tracks.map((track: Ham.Track, index) => (
+    <Grid item xs={4} key={index}>
+      <Track track={track} key={`track-item-${track.id}`}/>
+    </Grid>
   ));
   return (
     <div className="switching-set-card" id={`switching-set-card-${switchingSet.id}`}>

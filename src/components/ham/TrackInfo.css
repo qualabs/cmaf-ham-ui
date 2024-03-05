@@ -1,0 +1,38 @@
+.track-info{
+  background-color: var(--background-primary);
+  border-radius: 0.2rem;
+  border: 1px solid var(--border-secondary);
+  padding: 2rem;
+  color: var(--text-color-main);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30vw;
+  transform: translate(-50%, -50%);
+  z-index: 999 !important;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-end;
+  border: 3px solid green;
+}
+
+#track-info-header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.track-info-row{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.track-info-row input{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--text-color-main);;
+  color: var(--text-color-main);
+}
