@@ -9,7 +9,7 @@ export default function SwitchingSet({
   switchingSet: Ham.SwitchingSet;
 }) {
   let tracks = switchingSet.tracks.map((track: Ham.Track, index) => (
-    <Grid item xs={4} sm={4} md={4} key={index}>
+    <Grid item xs={4} key={index}>
       <Track track={track} key={`track-item-${track.id}`}/>
     </Grid>
   ));
