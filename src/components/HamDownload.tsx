@@ -43,7 +43,7 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
   const getMainManifest = (protocol: Protocols ) =>{
     switch (protocol) {
       case Protocols.DASH:
-        return Ham.hamToMPD([presentation])
+        return Ham.hamToMpd([presentation])
       case Protocols.HLS:
         return Ham.hamToM3U8([presentation]);
       default:
