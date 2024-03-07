@@ -22,7 +22,7 @@ export default function TrackInfo({ track }: { track: Ham.Track }) {
         <h3>Track Details</h3>
         <button onClick={() => setTrackEditMode(true)}>Edit</button>
       </div>
-      <List title="test">
+      <List>
         {trackToItems(track)
           .map((item) => (
             <div className="track-info-row">
