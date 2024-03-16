@@ -3,13 +3,13 @@ import { Protocols } from "../utils/enums/Protocols";
 import { FileExtensions } from "../utils/enums/FileExtensions";
 import JSZip from "jszip";
 import saveAs from "file-saver";
-import { Manifest } from "@svta/common-media-library/cmaf/utils/types/Manifest.js";
+import { Manifest } from "@svta/common-media-library/cmaf/utils/types/Manifest";
 const zip = new JSZip();
 
 //TODO receive presentation as list
 export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presentation, fileName: string }) => {
 
-  const hamDownload = (protocol: Protocols) => {
+  /* const hamDownload = (protocol: Protocols) => {
     const manifest = getMainManifest(protocol)
     if (manifest){
       const fileExtension = FileExtensions[protocol]
@@ -22,7 +22,7 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
         element.click();
       }
     }
-  }
+  } */
 
   const hamZipDownload = (protocol: Protocols) => {
     const manifest = getMainManifest(protocol)
