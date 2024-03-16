@@ -19,9 +19,9 @@ export default function Presentation({ presentation }: PresentationParams) {
           <h3>Presentation: {presentation.id}</h3>
           <Grid
             container
-            direction="column"
-            justifyContent="space-evenly"
-            rowGap={2}
+            direction="row"
+            justifyContent="center"
+            gap={2}
           >
             {selectionSets}
           </Grid>

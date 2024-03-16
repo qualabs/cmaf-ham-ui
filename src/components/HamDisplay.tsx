@@ -67,8 +67,8 @@ export const HamDisplay = ({
     let Display =
       selectedTrack == null ? (
         <Container maxWidth="lg">
-          {DownloadButtons}
           {PresentationsDisplay}
+          {DownloadButtons}
         </Container>
       ) : (
         <Container maxWidth="lg">

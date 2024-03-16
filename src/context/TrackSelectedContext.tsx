@@ -19,7 +19,10 @@ export const SelectedTrackProvider: FC<{
   
   const [openTrackModal, setOpenTrackModal] = useState(false);
   const handleOpenTrackModal = () => setOpenTrackModal(true);
-  const handleCloseTrackModal = () => setOpenTrackModal(false);
+  const handleCloseTrackModal = () => {
+    setOpenTrackModal(false);
+    setSelectedTrack(null);
+  };
 
   const selectTrack = (track: Ham.Track | null) => {
     setSelectedTrack(track);
