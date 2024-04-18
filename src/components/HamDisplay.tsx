@@ -69,25 +69,6 @@ export const HamDisplay = ({
       <Presentation/>
     );
 
-    // let Display =
-    //   selectedTrack == null ? (
-    //     <Container maxWidth="lg">
-    //       {DownloadButtons}
-    //       {PresentationsDisplay}
-    //     </Container>
-    //   ) : (
-    //     <Container maxWidth="lg">
-    //       {DownloadButtons}
-    //       {PresentationsDisplay}
-    //       <Modal
-    //         open={openTrackModal}
-    //         onClose={handleCloseTrackModal}
-    //       >
-    //         <TrackInfo track={selectedTrack}></TrackInfo>
-    //       </Modal>
-    //     </Container>
-    //   );
-
     let Display =
        <>
         <Container maxWidth="lg">
