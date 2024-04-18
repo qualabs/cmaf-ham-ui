@@ -40,13 +40,13 @@ export const HamDisplay = ({
       // console.log(protocol);
       switch (protocol) {
         case Protocols.DASH:
-          let ham = Ham.mpdToHam(manifest);
+          let ham = Ham.dashToHam(manifest);
           if (ham.length > 0) {
             selectPresentation(ham[0]); // TODO change state to list of presentations
           }
           break;
         case Protocols.HLS:
-          // return Ham.m3u8ToHam(manifest)
+          // return Ham.hlsToHam(manifest)
           //   .then(setPresentation)
           //   .catch((e) => {
           //     console.error("Erorr while parsing manifest", e);
