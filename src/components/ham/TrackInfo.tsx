@@ -4,7 +4,9 @@ import {
 } from "@mui/material";
 import "./TrackInfo.css";
 import * as Ham from "@svta/common-media-library/cmaf-ham";
-import { useState } from "react";
+import { deleteTrack } from '../../utils/PresentationManipulation'
+import { useContext, useState } from "react";
+import { PresentationContext, PresentationContextType } from "../../context/PresentationContext";
 
 interface TrackInfoItem {
   id: string;
@@ -15,12 +17,26 @@ interface TrackInfoItem {
 
 export default function TrackInfo({ track }: { track: Ham.Track }) {
   const [trackEditMode, setTrackEditMode] = useState(false);
+  const { presentation, selectPresentation } = useContext(
+    PresentationContext
+  ) as PresentationContextType;
+  
+  const removeTrack = () => {
+    //remove track from presentation
+    if (presentation != null) {
+      let updatedPresentation = deleteTrack(presentation, track.id)
+      selectPresentation(updatedPresentation)
+    }
+  };
 
   return (
     <div className="track-info">
       <div id="track-info-header">
         <h3>Track Details</h3>
-        <button onClick={() => setTrackEditMode(true)}>Edit</button>
+        <div>
+          <button onClick={() => setTrackEditMode(true)}>Edit</button>
+          <button onClick={() => removeTrack()}>Delete</button>
+        </div>
       </div>
       <List title="test">
         {trackToItems(track)

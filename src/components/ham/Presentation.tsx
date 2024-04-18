@@ -6,8 +6,20 @@ interface PresentationParams {
   presentation: Ham.Presentation;
 }
 
-export default function Presentation({ presentation }: PresentationParams) {
-  let selectionSets = presentation.selectionSets.map(
+import {
+  PresentationContext,
+  PresentationContextType,
+} from "../../context/PresentationContext";
+import { useContext } from "react";
+
+
+
+export default function Presentation() {
+  const { presentation } = useContext(
+    PresentationContext
+  ) as PresentationContextType;
+
+  let selectionSets = presentation?.selectionSets.map(
     (selectionSet: Ham.SelectionSet) => (
       <SelectionSet selectionSet={selectionSet} key={`selection-set-item-${selectionSet.id}`}/>
     )
@@ -16,7 +28,7 @@ export default function Presentation({ presentation }: PresentationParams) {
   return (
     <Container>
       <div className="presentation-card">
-          <h3>Presentation: {presentation.id}</h3>
+          <h3>Presentation: {presentation?.id}</h3>
           <Grid
             container
             direction="column"

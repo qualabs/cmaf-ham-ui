@@ -4,7 +4,6 @@ import { FileExtensions } from "../utils/enums/FileExtensions";
 import JSZip from "jszip";
 import saveAs from "file-saver";
 import { Manifest } from "@svta/common-media-library/cmaf/utils/types/Manifest.js";
-const zip = new JSZip();
 
 //TODO receive presentation as list
 export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presentation, fileName: string }) => {
@@ -25,13 +24,14 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
   }
 
   const hamZipDownload = (protocol: Protocols) => {
+    const zip = new JSZip();
     const manifest = getMainManifest(protocol)
     if (manifest){
       const fileExtension = FileExtensions[protocol]
       if (fileExtension) {
         zip.file(fileName + fileExtension, manifest.manifest);
         if(manifest.ancillaryManifests){
-          exportAncillaryManifests(protocol, manifest.ancillaryManifests);
+          exportAncillaryManifests(protocol, manifest.ancillaryManifests, zip);
         }
         zip.generateAsync({type:"blob"}).then(function(content) {
           saveAs(content, "ham_converter.zip");
@@ -51,7 +51,7 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
     }
   }
 
-  const exportAncillaryManifests = (protocol: Protocols, manifests: Manifest[]) =>{
+  const exportAncillaryManifests = (protocol: Protocols, manifests: Manifest[], zip: JSZip) =>{
     switch(protocol) {
       case Protocols.HLS:
       manifests.map((ancillaryManifest, index)=>{

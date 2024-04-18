@@ -43,7 +43,7 @@ button, input::file-selector-button {
   font-family: inherit;
   background-color: var(--color-primary);
   cursor: pointer;
-  margin: 1em;
+  margin: 0.5em;
   color: var(--text-color-main);
 }
 
