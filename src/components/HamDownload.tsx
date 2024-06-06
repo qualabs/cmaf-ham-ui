@@ -3,7 +3,7 @@ import { Protocols } from "../utils/enums/Protocols";
 import { FileExtensions } from "../utils/enums/FileExtensions";
 import JSZip from "jszip";
 import saveAs from "file-saver";
-import { Manifest } from "@svta/common-media-library/cmaf/utils/types/Manifest.js";
+import { Manifest } from "@svta/common-media-library";
 
 //TODO receive presentation as list
 export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presentation, fileName: string }) => {
@@ -43,9 +43,9 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
   const getMainManifest = (protocol: Protocols ) =>{
     switch (protocol) {
       case Protocols.DASH:
-        return Ham.hamToMPD([presentation])
+        return Ham.hamToDash([presentation])
       case Protocols.HLS:
-        return Ham.hamToM3U8([presentation]);
+        return Ham.hamToHls([presentation]);
       default:
         break;
     }
