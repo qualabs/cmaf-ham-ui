@@ -55,7 +55,7 @@ export const HamDownload = ({presentation, fileName}: { presentation: Ham.Presen
     switch(protocol) {
       case Protocols.HLS:
       manifests.map((ancillaryManifest, index)=>{
-        zip.file(`playlist_${index}`, ancillaryManifest.manifest); //TODO get the ancillary mmanifest filename
+        zip.file(`${index}`, ancillaryManifest.manifest);
       })
     }
   }
