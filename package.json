@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.11",
     "@svta/common-media-library": "file:../common-media-library/lib",
     "@types/xml2js": "^0.4.14",
