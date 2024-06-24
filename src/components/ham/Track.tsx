@@ -5,6 +5,8 @@ import {
   SelectedTrackContext,
   SelectedTrackType,
 } from "../../context/TrackSelectedContext";
+import ToolTip from "../ToolTip";
+import { Box } from "@mui/material";
 
 export default function Track({ track }: { track: Ham.Track }) {
   const { selectedTrack, selectTrack, handleOpenTrackModal } = useContext(
@@ -21,7 +23,16 @@ export default function Track({ track }: { track: Ham.Track }) {
       className={"track-card " + (isSelected ? "selected" : "")}
       onClick={onClick}
     >
-      <span>Track: {track.id}</span>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="row"
+        gap={1}
+      >
+        <span>Track: {track.id}</span>
+        <ToolTip title="Example info"></ToolTip>
+      </Box>
     </div>
   );
 }
