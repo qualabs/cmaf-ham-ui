@@ -2,6 +2,7 @@ import "./SelectionSet.css";
 import * as Ham from "@svta/common-media-library/cmaf-ham";
 import SwitchingSet from "./SwitchingSet";
 import { Grid, Box } from "@mui/material";
+import InfoBox from "../InfoBox";
 
 export default function SelectionSet({
   selectionSet,
@@ -18,7 +19,12 @@ export default function SelectionSet({
 
   return (
     <div className="selection-set-card">
-      <h4>Selection Set {selectionSet.id}</h4>
+      <InfoBox
+        id={selectionSet.id}
+        text={"Selection Set "}
+        info={"Example selection set info"}
+        headerLevel={4}
+      />
       <Box sx={{ flexGrow: 1 }}>
         <Grid
           container
