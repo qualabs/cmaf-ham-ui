@@ -1,8 +1,8 @@
 import "./SwitchingSet.css";
 import * as Ham from "@svta/common-media-library/cmaf-ham";
 import Track from "./Track";
-import { Box, Grid } from "@mui/material";
-import ToolTip from "../ToolTip";
+import { Grid } from "@mui/material";
+import InfoBox from "../InfoBox";
 
 export default function SwitchingSet({
   switchingSet,
@@ -19,16 +19,12 @@ export default function SwitchingSet({
       className="switching-set-card"
       id={`switching-set-card-${switchingSet.id}`}
     >
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="row"
-        gap={1}
-      >
-        <h5>Switching Set: {switchingSet.id}</h5>
-        <ToolTip title="Example info"></ToolTip>
-      </Box>
+      <InfoBox
+        id={switchingSet.id}
+        text={"Switching Set: "}
+        info={"Example switching set info"}
+        headerLevel={5}
+      />
       <Grid
         container
         direction="column"

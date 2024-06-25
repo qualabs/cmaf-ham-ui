@@ -1,6 +1,6 @@
 import * as Ham from "@svta/common-media-library/cmaf-ham";
 import SelectionSet from "./SelectionSet";
-import { Box, Container, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 interface PresentationParams {
   presentation: Ham.Presentation;
@@ -11,7 +11,7 @@ import {
   PresentationContextType,
 } from "../../context/PresentationContext";
 import { useContext } from "react";
-import ToolTip from "../ToolTip";
+import InfoBox from "../InfoBox";
 
 export default function Presentation() {
   const { presentation } = useContext(
@@ -30,16 +30,12 @@ export default function Presentation() {
   return (
     <Container>
       <div className="presentation-card">
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="row"
-          gap={1}
-        >
-          <h3>Presentation: {presentation?.id}</h3>
-          <ToolTip title="Example info"></ToolTip>
-        </Box>
+        <InfoBox
+          id={presentation?.id}
+          text={"Presentation: "}
+          info={"Example presentation info"}
+          headerLevel={3}
+        />
         <Grid
           container
           direction="column"
