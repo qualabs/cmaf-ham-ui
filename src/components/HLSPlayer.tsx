@@ -1,23 +1,24 @@
-import { Box, Button, Container, TextField } from "@mui/material";
-import React, { ChangeEvent, useRef } from "react";
+import { Box, Container, TextField } from "@mui/material";
 import { useState } from "react";
-import ReactHlsPlayer from "react-hls-player";
+import ReactPlayer from "react-player";
 
 export default function HLSPlayer() {
   const [hlsUrl, setHlsUrl] = useState(
-    "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+    "http://172.24.176.1:3000/big%20buck%20bunny%20sample.m3u8"
   );
-  const playerRef = useRef<HTMLVideoElement>(null);
-  const [localFileUrl, setLocalFileUrl] = useState<string | null>(null);
 
-  const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const fileUrl = URL.createObjectURL(file);
-      setLocalFileUrl(fileUrl);
-      setHlsUrl(""); // Clear the URL input to avoid confusion
-    }
-  };
+  // IF WE WANT TO UPLOAD .M3U8 LOCALLY
+
+  // const [localFileUrl, setLocalFileUrl] = useState<string | null>(null);
+
+  // const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0];
+  //   if (file) {
+  //     const fileUrl = URL.createObjectURL(file);
+  //     setLocalFileUrl(fileUrl);
+  //     setHlsUrl(""); // Clear the URL input to avoid confusion
+  //   }
+  // };
 
   return (
     <Container>
@@ -44,6 +45,11 @@ export default function HLSPlayer() {
             },
           }}
         />
+
+        {/* ********************************** */}
+
+        {/* IF WE WANT TO UPLOAD .M3U8 LOCALLY */}
+
         {/* <Button variant="contained" component="label" sx={{ mt: 2, mb: 2 }}>
           Upload HLS File
           <input
@@ -53,15 +59,19 @@ export default function HLSPlayer() {
             onChange={handleFileUpload}
           />
         </Button> */}
+
+        {/* ********************************** */}
+
         <Box width="60%" mt={4}>
-          <ReactHlsPlayer
-            src={hlsUrl}
-            autoPlay={false}
-            controls={true}
-            width="100%"
-            height="auto"
-            playerRef={playerRef}
-          />
+          <div className="player-wrapper">
+            <ReactPlayer
+              url={hlsUrl}
+              playing={true}
+              controls={true}
+              width="100%"
+              height="100%"
+            />
+          </div>
         </Box>
       </Box>
     </Container>

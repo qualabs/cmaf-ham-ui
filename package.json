@@ -22,7 +22,7 @@
     "m3u8-parser": "^7.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hls-player": "^3.0.7",
+    "react-player": "^2.16.0",
     "serve": "^14.2.3",
     "xml2js": "^0.6.2"
   },
