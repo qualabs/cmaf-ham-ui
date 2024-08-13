@@ -1,10 +1,17 @@
 import { Box, Container, TextField } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ReactPlayer from "react-player";
 
 export default function HLSPlayer() {
+  const playerRef = useRef(null);
+
+  useEffect(() => {
+    // Exponer el reproductor en la consola de Chrome
+    window.player = playerRef.current;
+  }, []);
+
   const [hlsUrl, setHlsUrl] = useState(
-    "http://172.24.176.1:3000/big%20buck%20bunny%20sample.m3u8"
+    "http://localhost:39271/hls/sample-1/main.m3u8"
   );
 
   // IF WE WANT TO UPLOAD .M3U8 LOCALLY
@@ -61,15 +68,22 @@ export default function HLSPlayer() {
         </Button> */}
 
         {/* ********************************** */}
-
+          
         <Box width="60%" mt={4}>
           <div className="player-wrapper">
             <ReactPlayer
+              ref={playerRef}
               url={hlsUrl}
               playing={true}
               controls={true}
               width="100%"
               height="100%"
+              config={{
+                file:{
+                  hlsVersion: "1.5.14",
+                  dashVersion: "4.7.4"
+                }
+              }}
             />
           </div>
         </Box>
