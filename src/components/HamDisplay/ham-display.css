@@ -1,0 +1,124 @@
+.ham-display-container {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+
+
+    .ham-display-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1.5rem;
+        z-index: 1;
+
+        h1 {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            color: #ffffffde;
+            gap: 0.25rem;
+        }
+
+        .actions-container {
+            display: flex;
+            gap: 1rem;
+            align-content: center;
+        }
+
+    }
+
+    .content-horizontal-container {
+        display: grid;
+        align-items: center;
+        flex-wrap: nowrap;
+        background: #222631;
+        opacity: 0.8;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        width: 100%;
+        overflow: auto;
+        justify-content: start;
+        align-items: start;
+        height: 100%;
+        grid-auto-flow: column;
+        grid-auto-columns: 375px;
+        z-index: 1;
+
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+
+
+
+        .scroll-button {
+            position: absolute;
+            right: 0.5rem;
+            box-sizing: border-box;
+            width: 2.5rem;
+            height: 2.5rem;
+            top: 50%;
+            background: radial-gradient(50% 50% at 50% 50%, #919191 0%, #737373 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 21px;
+            display: flex;
+            justify-content: center;
+            z-index: 1;
+            align-items: center;
+            padding: 0;
+
+            svg {
+                width: .8rem;
+                height: auto;
+            }
+
+            &.left {
+                right: 0rem;
+                left: 0.5rem;
+
+                svg {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1023px) {
+    .ham-display-container {
+        .ham-display-header {
+            display: grid;
+            grid-template-columns: 1fr;
+            padding-bottom: 1rem;
+
+            .actions-container {
+                justify-self: end;
+            }
+
+
+
+            h1 {
+                display: grid;
+                margin: 0.5rem;
+                font-size: 1.2rem;
+            }
+
+            .actions-container {
+                padding-top: .5rem;
+                align-self: center;
+                justify-self: center;
+            }
+
+        }
+
+        .content-horizontal-container {
+            display: block;
+
+            .selection-set-card {
+                height: max-content;
+            }
+        }
+    }
+}

@@ -1,6 +1,47 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+
+
+  ::-webkit-scrollbar {
+    width: .5rem;
+    height: .5rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.598);
+    width: 0.15rem;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    background: radial-gradient(50% 50% at 50% 50%, #CACACA 0%, #B1B1B1 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  /* Optional: Add a slightly visible thumb on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 255, 255);
+    cursor: pointer;
+
+  }
+}
+
+:root {
+  --breakpoint-mobile: "767px";
+  --breakpoint-tablet: "1023px";
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #222631;
+  height: 100dvh;
+  overflow: hidden;
 }

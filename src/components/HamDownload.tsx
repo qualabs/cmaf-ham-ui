@@ -4,6 +4,9 @@ import { FileExtensions } from "../utils/enums/FileExtensions";
 import JSZip from "jszip";
 import saveAs from "file-saver";
 import { Manifest } from "@svta/common-media-library";
+import Button from "./Button/Button";
+import DownloadIcon from "../assets/icons/download.svg?react";
+import { motion } from "framer-motion";
 
 //TODO receive presentation as list
 export const HamDownload = ({
@@ -59,7 +62,7 @@ export const HamDownload = ({
   const exportAncillaryManifests = (
     protocol: Protocols,
     manifests: Manifest[],
-    zip: JSZip
+    zip: JSZip,
   ) => {
     switch (protocol) {
       case Protocols.HLS:
@@ -70,15 +73,41 @@ export const HamDownload = ({
     }
   };
 
+  const actionsAnimationVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
   return (
-    <>
-      <button id="download-mpd" onClick={() => hamZipDownload(Protocols.DASH)}>
-        Export as DASH
-      </button>
-      <button id="download-m3u8" onClick={() => hamZipDownload(Protocols.HLS)}>
-        Export as HLS
-      </button>
-    </>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={actionsAnimationVariants}
+      className="actions-container"
+    >
+      <Button
+        label="Export as DASH"
+        icon={<DownloadIcon />}
+        color="#0a0f15b2"
+        background="radial-gradient(76.39% 76.39% at 50% 50%, #FFDB80 0%, #FFBE1A 100%)"
+        onClick={() => hamZipDownload(Protocols.DASH)}
+      />
+      <Button
+        label="Export as HLS"
+        icon={<DownloadIcon />}
+        color="#0a0f15b2"
+        background="radial-gradient(76.39% 76.39% at 50% 50%, #FFDB80 0%, #FFBE1A 100%)"
+        onClick={() => hamZipDownload(Protocols.HLS)}
+      />
+    </motion.div>
   );
 };
 
