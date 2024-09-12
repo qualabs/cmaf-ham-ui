@@ -15,7 +15,7 @@ import {
   PresentationContextType,
 } from "../../context/PresentationContext";
 import "./ham-display.css";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const HamDisplay = ({
   manifest,
@@ -62,6 +62,10 @@ export const HamDisplay = ({
     mapManifest(manifest);
   }, [manifest]);
 
+  useEffect(() => {
+    selectedTrack ? openTrackModal : handleCloseTrackModal();
+  }, [selectedTrack]);
+
   if (presentation != null) {
     return (
       <>
@@ -80,11 +84,21 @@ export const HamDisplay = ({
           </section>
           <Presentation />
         </section>
-        {selectedTrack !== null && (
-          <Modal open={openTrackModal} onClose={handleCloseTrackModal}>
-            <TrackInfo track={selectedTrack}></TrackInfo>
-          </Modal>
-        )}
+        <AnimatePresence>
+          {selectedTrack !== null && openTrackModal && (
+            <motion.div
+              className="modal-container"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <TrackInfo
+                onClose={handleCloseTrackModal}
+                track={selectedTrack}
+              ></TrackInfo>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </>
     );
   } else {

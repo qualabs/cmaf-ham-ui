@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 interface IconButtonProps {
   label: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   onClick: () => void;
   background?: string;
   color?: string;
@@ -53,7 +53,7 @@ const Button: React.FC<IconButtonProps> = ({
       }}
     >
       <span>{label}</span>
-      {icon}
+      {icon ?? null}
     </motion.button>
   );
 };

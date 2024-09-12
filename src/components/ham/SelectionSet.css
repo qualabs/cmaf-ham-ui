@@ -9,6 +9,10 @@
   background: #222631;
   scroll-snap-align: start;
 
+  &:nth-child(1) {
+    border-left: 1px solid #444444;
+  }
+
 
   h2 {
     margin: 0;
@@ -23,7 +27,7 @@
     color: #ffffffde;
     position: sticky;
     top: 1rem;
-    z-index: 2;
+    z-index: 3;
 
 
     &::after {
@@ -66,4 +70,20 @@
     margin: 0;
     margin-top: 0px;
   }
+}
+
+
+@media (max-width: 1023px) {
+  .selection-set-card {
+    border: none;
+
+    h2 {
+      &::after {
+        top: -1.2rem;
+        border-top: 1px solid #444444;
+        background: linear-gradient(180deg, #222531 60%, #22253100);
+      }
+    }
+  }
+
 }

@@ -23,6 +23,7 @@ export default function Track({ track }: { track: Ham.Track }) {
       className="track-card"
       onClick={onClick}
       whileTap={{ scale: 0.95 }}
+      layoutId={track.id}
       whileHover={{
         scale: 0.98,
         boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.327)",
@@ -30,7 +31,7 @@ export default function Track({ track }: { track: Ham.Track }) {
       //variants={trackAnimationVariants}
     >
       <span>Track</span>
-      <h4>{track.id}</h4>
+      <motion.h4 layoutId={`title-${track.id}`}>{track.id}</motion.h4>
       <MoreIcon />
     </motion.div>
   );

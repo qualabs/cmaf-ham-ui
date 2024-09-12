@@ -1,12 +1,16 @@
-import {
-  Divider,
-  List,
-} from "@mui/material";
 import "./TrackInfo.css";
 import * as Ham from "@svta/common-media-library/cmaf-ham";
-import { deleteTrack } from '../../utils/PresentationManipulation'
+import { deleteTrack } from "../../utils/PresentationManipulation";
 import { useContext, useState } from "react";
-import { PresentationContext, PresentationContextType } from "../../context/PresentationContext";
+import {
+  PresentationContext,
+  PresentationContextType,
+} from "../../context/PresentationContext";
+import IconButton from "../IconButton/IconButton";
+import EditIcon from "../../assets/icons/edit.svg?react";
+import DeleteIcon from "../../assets/icons/delete.svg?react";
+import Button from "../Button/Button";
+import { motion } from "framer-motion";
 
 interface TrackInfoItem {
   id: string;
@@ -15,50 +19,103 @@ interface TrackInfoItem {
   editable?: boolean;
 }
 
-export default function TrackInfo({ track }: { track: Ham.Track }) {
+export default function TrackInfo({
+  track,
+  onClose,
+}: {
+  track: Ham.Track;
+  onClose: () => void;
+}) {
   const [trackEditMode, setTrackEditMode] = useState(false);
   const { presentation, selectPresentation } = useContext(
-    PresentationContext
+    PresentationContext,
   ) as PresentationContextType;
-  
+
   const removeTrack = () => {
-    //remove track from presentation
+    console.log("Remove track", track.id);
+    /* //WIP
     if (presentation != null) {
-      let updatedPresentation = deleteTrack(presentation, track.id)
-      selectPresentation(updatedPresentation)
-    }
+      const updatedPresentation = deleteTrack(presentation, track.id);
+      selectPresentation(updatedPresentation);
+    } */
+  };
+
+  const enterEditMode = () => {
+    setTrackEditMode(true);
+  };
+
+  const saveChanges = () => {
+    setTrackEditMode(false);
   };
 
   return (
-    <div className="track-info">
-      <div id="track-info-header">
-        <h3>Track Details</h3>
-        <div>
-          <button onClick={() => setTrackEditMode(true)}>Edit</button>
-          <button onClick={() => removeTrack()}>Delete</button>
+    <motion.div
+      layoutId={track.id}
+      className="track-info"
+      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+    >
+      <div className="track-info-header">
+        <h3>
+          Track Details:{" "}
+          <motion.span layoutId={`title-${track.id}`}>
+            {track.id || "Track"}
+          </motion.span>
+        </h3>
+        <div className="track-info-actions">
+          <IconButton
+            icon={<EditIcon />}
+            onClick={enterEditMode}
+            backgroundColor="transparent"
+            label="Edit Info"
+          />
+          <IconButton
+            icon={<DeleteIcon />}
+            onClick={removeTrack}
+            backgroundColor="transparent"
+            label="Delete Track"
+          />
         </div>
       </div>
-      <List title="test">
-        {trackToItems(track)
-          .map((item) => (
-            <div className="track-info-row">
-              <label htmlFor={item.id}>{item.label}</label>
-              <input id={item.id} value={item.value} disabled={!trackEditMode}></input>
-            </div>
-          ))
-          .flatMap((value, index, array) =>
-            array.length - 1 !== index // check for the last item
-              ? [value, <Divider />]
-              : value
-          )}
-      </List>
-      {trackEditMode && 
-        <div>
-          <button>Save</button>
-          <button onClick={() => setTrackEditMode(false)}>Cancel</button>
-        </div>
-      }
-    </div>
+      <div className="track-info-container">
+        {trackToItems(track).map((item) => (
+          <div className="track-info-row">
+            <label htmlFor={item.id}>{item.label}</label>
+            <input
+              id={item.id}
+              value={item.value}
+              disabled={!trackEditMode}
+            ></input>
+          </div>
+        ))}
+      </div>
+      <div className="track-info-footer">
+        {trackEditMode ? (
+          <>
+            <Button
+              label="Save"
+              color="#0a0f15b2"
+              background="radial-gradient(76.39% 76.39% at 50% 50%, #FFDB80 0%, #FFBE1A 100%)"
+              onClick={saveChanges}
+            />
+            <Button
+              label="Discard"
+              color="#0a0f15b2"
+              background="#D1D1D1"
+              onClick={onClose}
+            />
+          </>
+        ) : (
+          <Button
+            label="Close"
+            color="#0a0f15b2"
+            background="radial-gradient(76.39% 76.39% at 50% 50%, #FFDB80 0%, #FFBE1A 100%)"
+            onClick={onClose}
+          />
+        )}
+      </div>
+    </motion.div>
   );
 }
 
@@ -73,7 +130,7 @@ const trackToItems = (track: Ham.Track): TrackInfoItem[] => {
     {
       id: "name",
       label: "Name: ",
-      value: track.name,
+      value: track.fileName || "",
       editable: true,
     },
     {
