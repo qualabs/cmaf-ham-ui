@@ -48,7 +48,7 @@
         z-index: 1;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
-        justify-content: center;
+        justify-content: start;
 
 
 
@@ -109,12 +109,15 @@
 
             .actions-container {
                 justify-self: end;
+                flex-wrap: wrap;
             }
 
 
 
             h1 {
-                display: grid;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
                 margin: 0.5rem;
                 font-size: 1.2rem;
             }
