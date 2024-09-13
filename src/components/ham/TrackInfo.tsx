@@ -1,11 +1,6 @@
 import "./TrackInfo.css";
 import * as Ham from "@svta/common-media-library/cmaf-ham";
-import { deleteTrack } from "../../utils/PresentationManipulation";
-import { useContext, useState } from "react";
-import {
-  PresentationContext,
-  PresentationContextType,
-} from "../../context/PresentationContext";
+import { useState } from "react";
 import IconButton from "../IconButton/IconButton";
 import EditIcon from "../../assets/icons/edit.svg?react";
 import DeleteIcon from "../../assets/icons/delete.svg?react";
@@ -27,9 +22,9 @@ export default function TrackInfo({
   onClose: () => void;
 }) {
   const [trackEditMode, setTrackEditMode] = useState(false);
-  const { presentation, selectPresentation } = useContext(
+  /*  const { presentation, selectPresentation } = useContext(
     PresentationContext,
-  ) as PresentationContextType;
+  ) as PresentationContextType; */
 
   const removeTrack = () => {
     console.log("Remove track", track.id);

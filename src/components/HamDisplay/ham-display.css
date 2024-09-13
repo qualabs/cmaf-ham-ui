@@ -87,18 +87,38 @@
 
 }
 
-.modal-container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    z-index: 1;
-    background: #2226316c;
+
+.wrong-file-container {
     display: grid;
-    align-content: center;
-    justify-content: center;
+    gap: .5rem;
+    width: max-content;
+    margin: 0 auto;
+    height: max-content;
+    padding: 10rem 1rem;
+    background: radial-gradient(50% 50% at 50% 50%, #ffffff14 0%, #ffffff00 100%);
+    justify-items: center;
+    z-index: 2;
+
+    svg {
+        width: 5rem;
+        height: max-content;
+        opacity: .7;
+
+        path {
+            fill: white
+        }
+    }
+
+    h3 {
+        margin: 0;
+    }
+
+    p {
+        margin: 0;
+        opacity: .8;
+    }
 }
+
 
 @media (max-width: 1023px) {
     .ham-display-container {
@@ -126,6 +146,7 @@
                 padding-top: .5rem;
                 align-self: center;
                 justify-self: center;
+                justify-content: center;
             }
 
         }

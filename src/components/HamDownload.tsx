@@ -6,7 +6,9 @@ import saveAs from "file-saver";
 import { Manifest } from "@svta/common-media-library";
 import Button from "./Button/Button";
 import DownloadIcon from "../assets/icons/download.svg?react";
+import PlayerIcon from "../assets/icons/player.svg?react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 //TODO receive presentation as list
 export const HamDownload = ({
@@ -16,7 +18,7 @@ export const HamDownload = ({
   presentation: Ham.Presentation;
   fileName: string;
 }) => {
-  const hamDownload = (protocol: Protocols) => {
+  /*   const hamDownload = (protocol: Protocols) => {
     const manifest = getMainManifest(protocol);
     if (manifest) {
       const fileExtension = FileExtensions[protocol];
@@ -29,7 +31,7 @@ export const HamDownload = ({
         element.click();
       }
     }
-  };
+  }; */
 
   const hamZipDownload = (protocol: Protocols) => {
     const zip = new JSZip();
@@ -42,7 +44,7 @@ export const HamDownload = ({
           exportAncillaryManifests(protocol, manifest.ancillaryManifests, zip);
         }
         zip.generateAsync({ type: "blob" }).then(function (content) {
-          saveAs(content, "ham_converter.zip");
+          saveAs(content, `ham-converter-${protocol}-${Date.now()}.zip`);
         });
       }
     }
@@ -86,6 +88,8 @@ export const HamDownload = ({
     },
   };
 
+  const navigate = useNavigate();
+
   return (
     <motion.div
       initial="hidden"
@@ -93,6 +97,13 @@ export const HamDownload = ({
       variants={actionsAnimationVariants}
       className="actions-container"
     >
+      <Button
+        label="HLS Player"
+        icon={<PlayerIcon />}
+        color="#0a0f15b2"
+        background="radial-gradient(50% 50% at 50% 50%, #CACACA 0%, #B1B1B1 100%)"
+        onClick={() => navigate("/player")}
+      />
       <Button
         label="Export as DASH"
         icon={<DownloadIcon />}

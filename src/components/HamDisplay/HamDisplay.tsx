@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import * as Ham from "@svta/common-media-library";
-import { Container, Modal } from "@mui/material";
 import Presentation from "../ham/Presentation";
 import HamDownload from "../HamDownload";
 import { Protocols } from "../../utils/enums/Protocols";
@@ -16,6 +15,8 @@ import {
 } from "../../context/PresentationContext";
 import "./ham-display.css";
 import { AnimatePresence, motion } from "framer-motion";
+import Modal from "../Modal/Modal";
+import WrongFileIcon from "../../assets/icons/wrong-file.svg?react";
 
 export const HamDisplay = ({
   manifest,
@@ -86,23 +87,33 @@ export const HamDisplay = ({
         </section>
         <AnimatePresence>
           {selectedTrack !== null && openTrackModal && (
-            <motion.div
-              className="modal-container"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
+            <Modal>
               <TrackInfo
                 onClose={handleCloseTrackModal}
                 track={selectedTrack}
               ></TrackInfo>
-            </motion.div>
+            </Modal>
           )}
         </AnimatePresence>
       </>
     );
   } else {
-    return <div>Please select a CMAF compliant Manifest to parse</div>;
+    return (
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.7, delay: 0.5, staggerChildren: 0.5 }}
+        className="wrong-file-container"
+      >
+        <WrongFileIcon />
+        <motion.h3>Please select a CMAF compliant Manifest to parse</motion.h3>
+        <motion.p>
+          Supported protocols are DASH and HLS, please select another file or
+          check URL.
+        </motion.p>
+      </motion.div>
+    );
   }
 };
 

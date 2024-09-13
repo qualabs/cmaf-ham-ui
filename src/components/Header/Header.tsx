@@ -6,6 +6,7 @@ import HamConverterWhite from "../../assets/ham-coverter-white.svg?react";
 import InfoIcon from "../../assets/icons/info.svg?react";
 import { motion } from "framer-motion";
 import IconButton from "../IconButton/IconButton";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({
   setManifest,
@@ -20,6 +21,7 @@ const Header = ({
   isFullScreen?: boolean;
   setFileName: React.Dispatch<React.SetStateAction<string | undefined>>;
 }) => {
+  const navigate = useNavigate();
   return (
     <motion.header
       layoutRoot
@@ -34,8 +36,8 @@ const Header = ({
       />
 
       <IconButton
-        onClick={() => console.log("info")}
-        label="Remove"
+        onClick={() => navigate("/info")}
+        label="Info"
         icon={<InfoIcon />}
         backgroundColor="#373a43"
         className="info-button"
