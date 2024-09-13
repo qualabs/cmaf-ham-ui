@@ -42,10 +42,7 @@ export default function App() {
                     <HamDisplay
                       manifest={manifest}
                       protocol={protocol}
-                      fileName={
-                        fileName ??
-                        `ham-converter-${protocol}-${Date.now()}.zip`
-                      }
+                      fileName={fileName ?? "ham-converter"}
                     ></HamDisplay>
                   </SelectedTrackProvider>
                 </PresentationProvider>
