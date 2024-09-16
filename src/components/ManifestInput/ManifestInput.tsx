@@ -69,11 +69,13 @@ const ManifestInput = ({
       fileNameFromFile();
       fileInputRef.current!.files = files;
       setInputValue("");
+      setIsDragOver(false);
     }
   };
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
+    setIsDragOver(true);
   };
 
   const submit = async () => {
@@ -133,23 +135,29 @@ const ManifestInput = ({
 
   const submitEnabled = (!!inputValue || !!fileSelected) && !manifest;
 
+  const [isDragOver, setIsDragOver] = useState(false);
+
   return (
     <motion.section
       layout
-      className="input-container"
+      className={`input-container ${isDragOver ? "drag-over" : ""}`}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
+      onDragLeave={() => setIsDragOver(false)}
     >
       <input
         type="text"
         className="input-text"
-        placeholder={!fileSelected ? "Type URL or Drag File" : undefined}
+        placeholder={
+          !fileSelected ? "Type a URL or drop an MPD/M3U8 file" : undefined
+        }
         value={inputValue}
         onChange={handleInputChange}
       />
       <input
         className="input-file"
         type="file"
+        accept=".mpd,.m3u8"
         ref={fileInputRef}
         onChange={handleFileChange}
       />
@@ -160,7 +168,7 @@ const ManifestInput = ({
         </div>
       ) : null}
 
-      {!manifest && (
+      {!manifest && !fileSelected && !inputValue && (
         <IconButton
           onClick={attachFile}
           backgroundColor="#373a43"
@@ -169,22 +177,22 @@ const ManifestInput = ({
         />
       )}
       <AnimatePresence mode="wait">
+        {(manifest || fileSelected) && (
+          <IconButton
+            onClick={removeManifest}
+            label="Clear"
+            icon={<RemoveIcon />}
+            backgroundColor="#373a43"
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence mode="wait">
         {submitEnabled && (
           <IconButton
             onClick={submit}
             label="Submit"
             icon={<SubmitIcon />}
             backgroundColor="#FFBE1A"
-          />
-        )}
-      </AnimatePresence>
-      <AnimatePresence mode="wait">
-        {manifest && (
-          <IconButton
-            onClick={removeManifest}
-            label="Remove"
-            icon={<RemoveIcon />}
-            backgroundColor="#373a43"
           />
         )}
       </AnimatePresence>
