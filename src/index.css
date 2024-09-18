@@ -12,12 +12,12 @@
   --border-primary: #232a31;
   --border-secondary: #65656e;
 
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color: var(--text-color-main);
-  background-color: var(--background-main) ;
+  background-color: var(--background-main);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -34,7 +34,8 @@ h1 {
   line-height: 1.1;
 }
 
-button, input::file-selector-button {
+button,
+input::file-selector-button {
   border-radius: 8px;
   border: none;
   padding: 0.4em 1em;
@@ -47,7 +48,7 @@ button, input::file-selector-button {
   color: var(--text-color-main);
 }
 
-button a{
+button a {
   text-decoration: none;
   color: var(--text-color-main);
   padding-left: 1rem;
@@ -58,11 +59,11 @@ input::file-selector-button {
   padding: 0.7em 1em;
 }
 
-input{
+input {
   padding: 0.4em;
 }
 
 
-#tab-text{
+#tab-text {
   color: white;
 }
