@@ -52,6 +52,11 @@
             color: #b3b3b3;
 
         }
+
+        &:disabled {
+            opacity: .5;
+            user-select: none;
+        }
     }
 
     .file-selected-name {

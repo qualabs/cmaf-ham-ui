@@ -137,6 +137,12 @@ const ManifestInput = ({
 
   const [isDragOver, setIsDragOver] = useState(false);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      submit();
+    }
+  };
+
   return (
     <motion.section
       layout
@@ -153,6 +159,8 @@ const ManifestInput = ({
         }
         value={inputValue}
         onChange={handleInputChange}
+        disabled={!!manifest}
+        onKeyDown={handleKeyDown}
       />
       <input
         className="input-file"
