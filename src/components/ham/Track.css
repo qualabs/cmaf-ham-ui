@@ -1,17 +1,46 @@
-.track-card{
-  border-radius: 0.2rem;
-  border: 1px solid var(--border-secondary);
-  padding: 0.5rem;
+.track-card {
   color: var(--text-color-primary);
-  width: 250px;
-}
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 0.35rem;
+  gap: 0.5rem;
+  background: #565D6C;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  cursor: pointer;
 
-.track-card:hover{
-  background-color: var(--background-primary);
-  color: var(--text-color-main)
-}
+  span {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.35rem .75rem;
+    gap: .5rem;
+    background: #D1D1D1;
+    border-radius: 0.5rem;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: #222631;
+    text-transform: uppercase;
+  }
 
-.track-card.selected{
-  background-color: var(--background-primary);
-  color: var(--text-color-main)
+  h4 {
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    font-weight: 400;
+    color: white;
+    user-select: none;
+  }
+
+  svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    user-select: none;
+  }
 }

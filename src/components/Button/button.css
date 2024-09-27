@@ -1,0 +1,39 @@
+.button {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    position: relative;
+    margin: 0;
+    transition: ease-in-out 0.2s;
+    box-sizing: border-box;
+    flex-direction: row;
+    align-items: center;
+    padding: .35rem .35rem .35rem 1rem;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 1.31rem;
+
+    svg {
+        width: 1.5rem !important;
+        height: 1.5rem !important;
+    }
+
+    &:disabled {
+        opacity: 0;
+        transform: scale(0);
+        display: none;
+    }
+
+    svg {
+        width: 1rem;
+        height: 1rem;
+
+    }
+}
+
+
+@media (max-width: 767px) {
+    .button {
+        padding: 0.25rem .25rem .2rem .7rem;
+        font-size: 0.9rem;
+    }
+}

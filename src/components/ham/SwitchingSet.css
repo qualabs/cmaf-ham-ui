@@ -1,6 +1,21 @@
-.switching-set-card{
-  background-color: var(--background-secondary);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  color: var(--text-color-main);
+.switching-set-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  gap: .5rem;
+  background: #3B404F;
+  border-radius: .5rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  h3 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: #ffffffde;
+    margin: 0;
+  }
+
 }
