@@ -1,0 +1,109 @@
+.hls-player-container {
+    width: 100%;
+    max-width: 900px;
+    z-index: 999 !important;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    background: #3B404F;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 0px 134px rgba(86, 93, 108, 0.45);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    justify-self: center;
+    align-self: center;
+
+
+    .hls-player-header {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.5rem 1rem;
+        box-sizing: border-box;
+
+        h3 {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 1rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            color: #ffffffde;
+            display: flex;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+        }
+
+    }
+
+    .hls-input-container {
+        display: grid;
+        gap: .25rem;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: start;
+        padding: 0 1rem;
+
+        input {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            gap: 0.75rem;
+            background: #565D6C;
+            border: 1px solid #ffffff1a;
+            border-radius: 7px;
+            color: var(--text-color-main);
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+
+            &:disabled {
+                background: #3B404F;
+            }
+
+            &:focus {
+                border: 1px solid #FFD700;
+                outline: none;
+            }
+        }
+
+        label {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            width: 100%;
+        }
+    }
+
+    .player-wrapper {
+        width: 100%;
+        padding: 0 1rem 1rem 1rem;
+        box-sizing: border-box;
+        border-radius: 0.5rem;
+        overflow: hidden;
+
+        video {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+    }
+}

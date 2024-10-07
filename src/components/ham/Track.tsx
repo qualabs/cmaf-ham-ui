@@ -5,23 +5,34 @@ import {
   SelectedTrackContext,
   SelectedTrackType,
 } from "../../context/TrackSelectedContext";
+import MoreIcon from "../../assets/icons/more.svg?react";
+import { motion } from "framer-motion";
 
 export default function Track({ track }: { track: Ham.Track }) {
-  const { selectedTrack, selectTrack, handleOpenTrackModal } = useContext(
-    SelectedTrackContext
+  const { selectTrack, handleOpenTrackModal } = useContext(
+    SelectedTrackContext,
   ) as SelectedTrackType;
   const onClick = () => {
     selectTrack(track);
     handleOpenTrackModal();
   };
-  const isSelected = selectedTrack !== null && selectedTrack.id === track.id;
+
   return (
-    <div
+    <motion.div
       id={`track-div-${track.id}`}
-      className={"track-card " + (isSelected ? "selected" : "")}
+      className="track-card"
       onClick={onClick}
+      whileTap={{ scale: 0.95 }}
+      layoutId={track.id}
+      whileHover={{
+        scale: 0.98,
+        boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.327)",
+      }}
+      //variants={trackAnimationVariants}
     >
-      <span>Track: {track.id}</span>
-    </div>
+      <span>Track</span>
+      <motion.h4 layoutId={`title-${track.id}`}>{track.id}</motion.h4>
+      <MoreIcon />
+    </motion.div>
   );
 }
