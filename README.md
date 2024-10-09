@@ -10,6 +10,12 @@ Currently, the CMAF-HAM-UI tool only works with unencrypted VOD MPDs.
 
 A live example can be found in this site: http://cmaf-ham-ui.s3-website-us-east-1.amazonaws.com/
 
+Use this MPDs to test the live example:
+* https://cmaf-ham-ui.s3.amazonaws.com/samples/manifest-sample-1.mpd
+* https://cmaf-ham-ui.s3.amazonaws.com/samples/manifest-sample-2.mpd
+* https://cmaf-ham-ui.s3.amazonaws.com/samples/manifest-sample-3.mpd
+* https://cmaf-ham-ui.s3.amazonaws.com/samples/manifest-sample-4.mpd
+
 ## About CMAF-HAM
 
 HLS and DASH stand as the predominant video streaming technologies currently. Consequently, users often encounter challenges such as converting between HLS and DASH, manipulating manifests, and programmatically understanding manifest structures.
