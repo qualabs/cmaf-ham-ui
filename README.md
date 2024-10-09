@@ -1,30 +1,26 @@
-# React + TypeScript + Vite
+# CMAF-HAM-UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a proof of concept demonstrating how, by using CMAF-HAM, it is possible to create a small service to visualize presentations and export them in HLS or DASH.
 
-Currently, two official plugins are available:
+Currently, the CMAF-HAM-UI tool only works with unencrypted VOD MPDs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*For a more complete example with HLS and DASH see the CMAF-HAM-Conversion example https://github.com/streaming-video-technology-alliance/common-media-library/tree/main/samples/cmaf-ham-conversion*
 
-## Expanding the ESLint configuration
+## Live example 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+A live example can be found in this site: http://cmaf-ham-ui.s3-website-us-east-1.amazonaws.com/
 
-- Configure the top-level `parserOptions` property like this:
+## About CMAF-HAM
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+HLS and DASH stand as the predominant video streaming technologies currently. Consequently, users often encounter challenges such as converting between HLS and DASH, manipulating manifests, and programmatically understanding manifest structures.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The Common Media Application Format (CMAF) for segmented media (ISO/IEC 23000-19) addresses these challenges by defining a universal format based on ISOBMFF. Additionally, it introduces the Hypothetical Application Model, a framework illustrating the practical usage of CMAF segments and fragments in streaming applications. This project is inspired by the principles outlined in the CMAF standard and the [Hypothetical Application Model] (Hypothetical Application Model).
+
+The CMAF-HAM Library is part of the [SVTA Common Media Library](https://github.com/streaming-video-technology-alliance/common-media-library/tree/main/lib/src/cmaf/ham)
+
+## Development and Build
+
+* Use `npm run dev` to start a dev enviroment
+* Use `npm run build` to build the project
+
+

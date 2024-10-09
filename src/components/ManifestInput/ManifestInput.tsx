@@ -155,7 +155,7 @@ const ManifestInput = ({
         type="text"
         className="input-text"
         placeholder={
-          !fileSelected ? "Type a URL or drop an MPD/M3U8 file" : undefined
+          !fileSelected ? "Type a URL or drop an MPD file" : undefined
         }
         value={inputValue}
         onChange={handleInputChange}
@@ -165,7 +165,7 @@ const ManifestInput = ({
       <input
         className="input-file"
         type="file"
-        accept=".mpd,.m3u8"
+        accept=".mpd"
         ref={fileInputRef}
         onChange={handleFileChange}
       />
